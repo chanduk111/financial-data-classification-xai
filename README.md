@@ -206,55 +206,20 @@ data/raw/
 ```
 
 See [`data/README.md`](data/README.md).
+### 5. Run the notebook
 
-### 5. Run the training workflow
+The complete documented MSc experiment is contained in:
 
-```bash
-python -m src.train
-```
+notebooks/financial_data_classification.ipynb
 
-Generated runtime results and model artefacts are intentionally ignored by Git.
+Open the notebook in Jupyter or Google Colab, update the dataset path if required, and run the cells in sequence. The notebook contains the dataset preparation, feature engineering, TF-IDF transformation, model training, evaluation and XAI analysis.
 
-## Notebook
+### 6. Reusable Python modules
 
-The cleaned notebook is available at:
+The `src/` directory contains reusable preprocessing, modelling and explainability utilities. After constructing the feature matrix `X` and target `y` from the dataset workflow:
 
-[`notebooks/financial_data_classification.ipynb`](notebooks/financial_data_classification.ipynb)
+```python
+from src.train import train_and_evaluate
 
-It preserves the major experimental stages of the original MSc implementation while removing Google Drive-specific paths and duplicate environment setup.
-
-## Limitations
-
-- The repository does not include the third-party Walmart dataset.
-- The reported benchmark values come from the original MSc experiment and are retained as documented results.
-- The project is an academic/research implementation rather than a claimed production deployment.
-- The repository does not claim a web API, cloud deployment or CI/CD pipeline because those capabilities are not demonstrated by the supplied project.
-
-## Future improvements
-
-Potential extensions include:
-
-- automated hyperparameter search
-- stronger cross-validation strategy across all models
-- experiment tracking
-- a prediction API
-- containerisation
-- automated testing
-- CI/CD
-- model monitoring
-
-These are **future improvements**, not completed features.
-
-## Academic context
-
-**MSc Computer Science — University College Birmingham**
-
-Project focus: machine-learning-based financial data classification in retail organisations using Natural Language Processing and Explainable Artificial Intelligence, with Walmart as the case study.
-
-## Author
-
-**Kundeti Sai Chandra Sekhar**
-
-MSc Computer Science | University College Birmingham
-
-GitHub: https://github.com/chanduk111
+results = train_and_evaluate(X, y)
+print(results)
